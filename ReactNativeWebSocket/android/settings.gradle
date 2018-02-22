@@ -1,0 +1,3 @@
+rootProject.name = 'ReactNativeWebSocket'
+
+include ':app'

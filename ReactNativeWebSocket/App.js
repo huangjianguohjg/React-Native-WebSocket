@@ -13,30 +13,43 @@ import {
 } from 'react-native';
 // import NetworkTest from 'network'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+// const instructions = Platform.select({
+//   ios: 'Press Cmd+R to reload,\n' +
+//     'Cmd+D or shake for dev menu',
+//   android: 'Double tap R on your keyboard to reload,\n' +
+//     'Shake or press menu button for dev menu',
+// });
 
 type Props = {};
 export default class App extends Component<Props> {
 
     webSocketApiExample() {
-        var ws = new WebSocket('ws://172.104.164.248:8096/ws?type=draw');
+        var ws = new WebSocket('ws://172.104.164.248:8096/ws?userid=jeiwuruewohruwehfuewuihfhewuhiufhiu');
 
         ws.onopen = () => {
             // 打开一个连接
-            ws.send('something'); // 发送一个消息
+            let formData = new FormData();
+            formData.append("MsgType","draw");
+            formData.append("draw",'cqssc');
+            formData.append("cqssc",1);
+            formData.append("DateTime","2018-02-23");
+            // ws.send(formData); // 发送一个消息
 
+            var dic = { "MsgType": "draw", "Code": "cqssc", "Status": 1, "DateTime": "2018-02-23"};
+            ws.send(JSON.stringify(dic));
             alert('chenggong')
         };
 
         ws.onmessage = (e) => {
             // 接收到了一个消息
+            // console.log(e.data);
+            // alert(e.data);
+
+
+
+            alert('ewwwwwwww');
+            alert(e.data.DrawMsg);
             console.log(e.data);
-            alert(e.data);
         };
 
         ws.onerror = (e) => {
@@ -55,16 +68,16 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-          {instructions}
+        {/*<Text style={styles.welcome}>*/}
+          {/*Welcome to React Native!*/}
+        {/*</Text>*/}
+        {/*<Text style={styles.instructions}>*/}
+          {/*To get started, edit App.js*/}
+        {/*</Text>*/}
+        {/*<Text style={styles.instructions}>*/}
+          {/*{instructions}*/}
+        {/*</Text>*/}
+          {/*{instructions}*/}
           {this.webSocketApiExample()}
       </View>
     );

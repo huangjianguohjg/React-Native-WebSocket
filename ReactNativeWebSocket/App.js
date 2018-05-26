@@ -35,7 +35,7 @@ export default class App extends Component<Props> {
             formData.append("DateTime","2018-02-23");
             // ws.send(formData); // 发送一个消息
 
-            var dic = { "MsgType": "draw", "Code": "cqssc", "Status": 1, "DateTime": "2018-02-23"};
+            var dic = { "MsgType": "buytickets", "Code": "cqssc", "Status": 1};
             ws.send(JSON.stringify(dic));
             alert('chenggong')
         };
@@ -48,7 +48,7 @@ export default class App extends Component<Props> {
 
 
             alert('ewwwwwwww');
-            alert(e.data.DrawMsg);
+            alert(e.data);
             console.log(e.data);
         };
 
